@@ -1,0 +1,14 @@
+<form name="signinForm" novalidate="" ng-submit="calc(signinForm)">
+    <label class="item item-input">
+        <span class="input-label">Inicio TSV</span>
+        <input  type="text"  pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]" required name="inicioTSV" ng-model="calc.inicioTSV"  ng-class="{ 'has-error' : signinForm.inicioTSV.$invalid}">
+    </label>
+    <label class="item item-input">
+        <span class="input-label">Pepe</span>
+        <input type="text" name="pepe"  >
+    </label>
+    <div class="form-errors" ng-messages="signinForm.username.$error" ng-messages-include="templates/form-errors.html">
+        <div class="form-error" ng-message="maxlength">This field is must be less than 10 characters</div>
+    </div>
+</form>
+
