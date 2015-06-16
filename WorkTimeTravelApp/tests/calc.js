@@ -46,16 +46,37 @@ function test2(){
 
     var minutesToAdd = moment.duration(intervalMinutes, 'minutes');
     var ultimoArrivoToAdd = moment.duration({'hours':12,'minutes':30});
+    
     var finTSVToAdd = moment.duration(13,'hours');
+    
 
-    var nigthHourFrom = 6;
-    var nigthHourTo = 23;
+    var nightHourFrom = 23;
+    var nightHourTo = 6;
+
+    var limitHours = 13;
+
 
     for(var min = 0; min < totalOfTenMinutes; min++){
-
+        
         //1 - Agreogo Ultimo Arrivo y FinTSV
         ultimoArrivo.add(ultimoArrivoToAdd);
         finTSV.add(finTSVToAdd);
+
+        //Si está en el rango nocturno
+        if(inicioTSV.hours() >= nightHourFrom){
+            var diff = inicioTSV.hours() - nightHourFrom;
+            //Si cambio de hora y está en el rango.  Resto media hora de trabajo
+            var exceededMinutes = moment.duration(30*diff,'minutes');
+            ultimoArrivo.subtract(exceededMinutes);
+            finTSV.subtract(exceededMinutes);
+        }
+        if(inicioTSV.hours() < nightHourTo){
+            var diff = nightHourTo - inicioTSV.hours();            
+            //Si cambio de hora y está en el rango.  Resto media hora de trabajo
+            var exceededMinutes = moment.duration(30*diff,'minutes');
+            ultimoArrivo.subtract(exceededMinutes);
+            finTSV.subtract(exceededMinutes);
+        }
 
         var inicio = inicioTSV.hours()+":"+inicioTSV.minute() +"          ";
         var arrivo =  ultimoArrivo.hours()+":"+ultimoArrivo.minute() +"          ";
@@ -70,7 +91,7 @@ function test2(){
         ultimoArrivo = moment({hour:inicioTSV.hours(),min:inicioTSV.minutes()});
         finTSV = moment({hour:inicioTSV.hours(),min:inicioTSV.minutes()});
 
-
+        
 
     }
 
@@ -78,6 +99,7 @@ function test2(){
 
 }
 test2();
+
 
 
 
