@@ -1,5 +1,15 @@
 angular.module('starter.services', [])
 
+.factory('HoursService',function(){
+
+      return {
+        calc: function(inicioTSV){
+            console.log('Calculando Inicio TSV',inicioTSV);
+            //TODO Hacer calculos o llamar al js que hace los calculos
+        }
+      }
+})
+
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 
