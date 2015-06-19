@@ -8,11 +8,13 @@ directives.directive('loadHours',[function(){
         scope:{},
         controller:["$scope",function($scope){
 
+            //$scope.hoursInput = {
+            //    inicioTSV: new Date()
+            //};
+
             $scope.calc = function(){
-
+                console.log(this.inicioTSV);
             };
-
-            console.log('$scope',$scope);
         }]
     }
 }]);
