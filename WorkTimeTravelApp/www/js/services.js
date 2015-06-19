@@ -4,8 +4,11 @@ angular.module('starter.services', [])
 
       return {
         calc: function(inicioTSV){
-            console.log('Calculando Inicio TSV',inicioTSV);
-            //TODO Hacer calculos o llamar al js que hace los calculos
+          console.log('Calculando Inicio TSV',inicioTSV);
+          var params = {};//TODO Get params from Firebase
+          var results = Calculator.calcWork(params,inicioTSV);
+          console.log('Results Hours',results);
+          return results;
         }
       }
 })

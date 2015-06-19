@@ -8,7 +8,7 @@ directives.directive('loadHours',['HoursService',function(HoursService){
         scope:{},
         controller:["$scope",function($scope){
             $scope.calc = function(){
-                HoursService.calc(this.inicioTSV)
+                HoursService.calc(this.inicioTSV);
             };
         }]
     }
