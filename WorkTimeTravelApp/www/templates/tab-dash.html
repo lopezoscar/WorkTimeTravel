@@ -6,14 +6,18 @@
           <div class="row responsive-sm responsive-md responsive-lg">
             <div class="col col-50">
               <h1>Inicio TSV</h1>
-              <load-hours></load-hours>
+              <load-hours hours-data="hoursData"></load-hours>
             </div>
           </div>
         </div>
       </ion-slide>
       <ion-slide>
         <div class="box yellow">
-          <h1>Vuelos</h1>
+          <ion-content>
+            <h1>Vuelos</h1>
+            <hours-details hours-data="hoursData"></hours-details>
+          </ion-content>
+
         </div>
       </ion-slide>
     </ion-slide-box>

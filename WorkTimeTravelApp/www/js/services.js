@@ -1,5 +1,11 @@
 angular.module('starter.services', [])
 
+.filter('moment', function() {
+  return function(dateString, format) {
+    return moment(dateString).format(format);
+  };
+})
+
 .factory('HoursService',function(){
 
       return {
