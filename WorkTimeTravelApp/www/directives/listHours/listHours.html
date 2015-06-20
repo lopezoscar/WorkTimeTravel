@@ -3,7 +3,7 @@
         <ion-content class="has-header has-tabs">
             <ion-list>
                 <ion-item class="item-remove-animate item-avatar item-icon-right"
-                          ng-repeat="hour in hours" type="item-text-wrap">
+                          collection-repeat="hour in hours" type="item-text-wrap">
                     <h2>{{hour.vuelo}}</h2>
                     <p>Inicio TSV {{hour.inicioTSV    |  moment:'DD/MM HH:mm'}}</p>
                     <p>Ultimo Arrivo {{hour.ultimoArrivo |  moment:'DD/MM HH:mm'}}</p>
