@@ -7,6 +7,8 @@
   "dependencies": {
     "angular-localforage": "~1.2.2",
     "localforage": "~1.2.3",
-    "moment": "~2.10.3"
+    "moment": "~2.10.3",
+    "firebase": "~2.2.7",
+    "angularfire": "~1.1.1"
   }
 }

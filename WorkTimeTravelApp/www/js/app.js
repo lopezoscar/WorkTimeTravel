@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic','ngMessages',"firebase","LocalForageModule",'starter.controllers', 'starter.services','starter.directives'])
+angular.module('starter', ['ionic',"firebase","LocalForageModule",'starter.controllers', 'starter.services','starter.directives'])
 
     .config(['$localForageProvider', function($localForageProvider){
       $localForageProvider.config({
@@ -19,6 +19,7 @@ angular.module('starter', ['ionic','ngMessages',"firebase","LocalForageModule",'
 
     .run(function($ionicPlatform) {
       $ionicPlatform.ready(function() {
+          
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
