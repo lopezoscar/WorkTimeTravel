@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "angular-localforage": "~1.2.2",
-    "localforage": "~1.2.3"
+    "localforage": "~1.2.3",
+    "moment": "~2.10.3"
   }
 }
