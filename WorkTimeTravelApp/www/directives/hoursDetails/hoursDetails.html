@@ -1,0 +1,36 @@
+<div>
+    <div class="row">
+
+        <div class="card">
+            <div class="item item-divider">
+                Inicio TSV
+            </div>
+            <div class="item item-text-wrap">
+
+                {{hoursData.inicioTSV | moment:'DD/MM HH:mm'}}
+            </div>
+        </div>
+        <div class="card">
+            <div class="item item-divider">
+                Último Arrivo
+            </div>
+            <div class="item item-text-wrap">
+                {{hoursData.ultimoArrivo | moment:'DD/MM HH:mm'}}
+            </div>
+        </div>
+        <div class="card">
+            <div class="item item-divider">
+                Fin TSV
+            </div>
+            <div class="item item-text-wrap">
+                {{hoursData.finTSV | moment:'DD/MM HH:mm'}}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <input type="button" ng-click="createAlarm()" class="button button-large button-positive" value="Crear Alarma"/>
+        </div>
+    </div>
+</div>

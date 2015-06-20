@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col">
+        <ion-content class="has-header">
+            <ion-list>
+                <ion-item class="item-remove-animate item-avatar item-icon-right"
+                          ng-repeat="hour in hours" type="item-text-wrap">
+                    <h2>{{hour.vuelo}}</h2>
+                    <p>Inicio TSV {{hour.inicioTSV    |  moment:'DD/MM HH:mm'}}</p>
+                    <p>Ultimo Arrivo {{hour.ultimoArrivo |  moment:'DD/MM HH:mm'}}</p>
+                    <p>Fin TSV {{hour.finTSV       |  moment:'DD/MM HH:mm'}}</p>
+                    <ion-option-button class="button-assertive" ng-click="removeHour(hour)">
+                        Borrar
+                    </ion-option-button>
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </div>
+</div>
