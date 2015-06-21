@@ -23,8 +23,9 @@ directives.directive('capitalize', function() {
 directives.directive('loadHours',['HoursService','$ionicSlideBoxDelegate',function(HoursService,$ionicSlideBoxDelegate){
 
     return {
-        templateUrl:'/directives/loadHours/loadHours.html',
+        templateUrl:'directives/loadHours/loadHours.html',
         restrict:'E',
+        replace: true,
         scope:{
             hoursData:'='
         },

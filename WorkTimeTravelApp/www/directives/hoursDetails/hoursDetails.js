@@ -4,7 +4,8 @@ directives.directive('hoursDetails',['$localForage',function($localForage){
 
     return {
         restrict: 'E'
-        , templateUrl: '/directives/hoursDetails/hoursDetails.html'
+        ,replace: true
+        , templateUrl: 'directives/hoursDetails/hoursDetails.html'
         , scope: {
             hoursData: '='
         },

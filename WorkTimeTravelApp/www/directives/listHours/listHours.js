@@ -4,6 +4,7 @@ directives.directive('listHours',['HoursService',function(HoursService){
 
     return {
         restrict:'E'
+        ,replace: true
         ,templateUrl:'directives/listHours/listHours.html'
         ,scope:{
             hours:'='
