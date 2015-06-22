@@ -1,7 +1,13 @@
 angular.module('starter.controllers', [])
 
-    .controller('DashCtrl', function($scope) {
+    .controller('DashCtrl', function($scope,HoursService) {
         $scope.hoursData = {};
+        $scope.hours = [];
+        $scope.$on('$ionicView.enter', function(e) {
+            HoursService.getHours(function(hours){
+                $scope.hours = hours;
+            });
+        });
     })
 
     .controller('ChatsCtrl',['$scope','Chats','HoursService',function($scope, Chats,HoursService) {
@@ -13,6 +19,7 @@ angular.module('starter.controllers', [])
         //$scope.$on('$ionicView.enter', function(e) {
         //});
 
+        $scope.hoursData = {};
         $scope.hours = [];
         $scope.$on('$ionicView.enter', function(e) {
             HoursService.getHours(function(hours){
