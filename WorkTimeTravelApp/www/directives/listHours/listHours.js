@@ -9,12 +9,17 @@ directives.directive('listHours',['HoursService',function(HoursService){
         ,scope:{
             hours:'='
         }
-        ,controller:["$scope",function($scope){
+        ,controller:["$scope","$ionicSlideBoxDelegate",function($scope,$ionicSlideBoxDelegate){
             $scope.removeHour = function(anHour){
                 console.log('removing hour',anHour);
                 HoursService.remove(anHour);
                 $scope.hours.splice($scope.hours.indexOf(anHour),1);
             }
+
+            $scope.addHour = function(){
+                $ionicSlideBoxDelegate.next();
+            }
+
         }]
     }
 }]);

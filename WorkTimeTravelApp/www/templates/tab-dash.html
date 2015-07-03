@@ -1,6 +1,36 @@
 <ion-view view-title="Horas">
   <ion-content>
-    <list-hours hours="hours"></list-hours>
+
+    <ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)">
+
+      <ion-slide>
+        <div class="box blue">
+          <list-hours hours="hours"></list-hours>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="box blue">
+          <div class="row responsive-sm responsive-md responsive-lg">
+            <div class="col col-50">
+              <h1>Inicio TSV</h1>
+              <load-hours hours-data="hoursData"></load-hours>
+            </div>
+          </div>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div class="box yellow">
+          <ion-content>
+            <h1>Vuelos</h1>
+            <hours-details hours-data="hoursData"></hours-details>
+          </ion-content>
+        </div>
+      </ion-slide>
+    </ion-slide-box>
 
   </ion-content>
+
+
+
+
 </ion-view>
