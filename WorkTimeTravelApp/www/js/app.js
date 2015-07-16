@@ -5,7 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic',"ngCordova","firebase","LocalForageModule",'starter.controllers', 'starter.services','starter.directives'])
+
+window.db = null;
+angular.module('starter', ['ionic',"firebase","LocalForageModule",'starter.controllers', 'starter.services','starter.directives','ngCordova'])
 
     .config(['$localForageProvider', function($localForageProvider){
       $localForageProvider.config({
@@ -19,7 +21,7 @@ angular.module('starter', ['ionic',"ngCordova","firebase","LocalForageModule",'s
 
     .run(function($ionicPlatform,$cordovaSQLite) {
       $ionicPlatform.ready(function() {
-          
+
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -30,8 +32,8 @@ angular.module('starter', ['ionic',"ngCordova","firebase","LocalForageModule",'s
           StatusBar.styleLightContent();
         }
 
-          var db = $cordovaSQLite.openDB("flights");
-          $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS flights (id integer primary key, flight_id text, inicioTSV date,ultimo_arrivo date,finTSV date)");
+        db = $cordovaSQLite.openDB("flights");
+        $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS flights (id integer primary key, flight_id text, inicioTSV date,ultimo_arrivo date,finTSV date)");
       });
     })
 

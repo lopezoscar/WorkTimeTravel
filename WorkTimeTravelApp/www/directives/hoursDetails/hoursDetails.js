@@ -1,6 +1,6 @@
 var directives = angular.module('starter.directives');
 
-directives.directive('hoursDetails',['$localForage',function($localForage){
+directives.directive('hoursDetails',['$localForage','HoursService',function($localForage,HoursService){
 
     return {
         restrict: 'E'
@@ -19,7 +19,9 @@ directives.directive('hoursDetails',['$localForage',function($localForage){
                     , finTSV: $scope.hoursData.finTSV
                 };
                 if ($scope.hoursData.vuelo) {
-                    $localForage.setItem($scope.hoursData.vuelo, data);
+                    //$localForage.setItem($scope.hoursData.vuelo, data);
+                    HoursService.addHours($scope.hoursData);
+                    //$localForage.setItem($scope.hoursData.vuelo, data);
                 }
             }
         }]
