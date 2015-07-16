@@ -17,18 +17,29 @@ angular.module('starter.services', [])
           return results;
         }
         ,getHours:function(callback){
+          var hours = [];
           var query = "SELECT id, inicioTSV,ultimoArrivo,finTSv from flights ORDER BY desc";
           $cordovaSQLite.execute(db, query, []).then(function(res) {
             if(res.rows.length > 0) {
-              console.log("SELECTED -> " + res.rows.item(0).id + " " + res.rows.item(0).finTSv);
-              callback([]);
+              for(var i = 0; i < res.rows.length; i++){
+                var item = {
+                  vuelo: res.rows.item(i).id,
+                  inicioTSV: res.rows.item(i).inicioTSV,
+                  ultimoArrivo: res.rows.item(i).ultimoArrivo,
+                  finTSV: res.rows.item(i).finTSV
+                }
+                hours.push(item);
+              }
+
+              //console.log("SELECTED -> " + res.rows.item(0).id + " " + res.rows.item(0).finTSv);
             } else {
               console.log("No results found");
+              callback(hours);
             }
           }, function (err) {
             console.error(err);
+            callback(hours);
           });
-
           //var hours = [];
           //$localForage.iterate(function(value, key) {
           //  hours.push({vuelo:key,hours:value});
