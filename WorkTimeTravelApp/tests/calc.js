@@ -94,10 +94,129 @@ function test2(){
         
 
     }
-
-
-
 }
+
+function test3(inicioTSVDate){
+    //Replace values with params
+    var nightHourFrom = 23;
+    var nightHourTo = 6;
+    var limitHours = 13;
+
+    var inicioTSV = moment({hour:inicioTSVDate.getHours(),min:inicioTSVDate.getMinutes()});
+    var ultimoArrivo = moment({hour:inicioTSVDate.getHours(),min:inicioTSVDate.getMinutes()});
+    var finTSV = moment({hour:inicioTSVDate.getHours(),min:inicioTSVDate.getMinutes()});
+
+    var ultimoArrivoToAdd = moment.duration({'hours':12,'minutes':30});
+    var finTSVToAdd = moment.duration(limitHours,'hours');
+
+
+    var x = moment();
+    x.hour(nightHourFrom);
+    x.minutes(0);
+    x.seconds(0);
+
+    var z = moment();
+    z.hour(nightHourTo);
+    z.minutes(0);
+    z.seconds(0);
+    z.add(1,'d');
+    //Rango Horas Nocturnas
+    var range = x.twix(z);
+
+    //console.log('count',range.count('hours'));
+    //console.log('countInner',range.countInner('hours'));
+    //console.log('length',range.length('hours'));
+
+    var lengthNightHours = range.length('hours');
+
+    finTSV.add(finTSVToAdd);
+
+    var rangeTSV = inicioTSV.twix(finTSV);
+
+    finTSV.subtract(finTSVToAdd);
+
+
+    //Todas las horas después de las 6 de la mañana
+    //Rango 6 - 24
+
+    //Desde las 07 - 10 es Horario Normal
+    //Hasta las 17:00 está ok
+    if(inicioTSV.hours() > nightHourTo){
+        var diff = nightHourFrom - inicioTSV.hours();//Estandar hours
+        console.log('diff',diff);
+        if(diff > 0 && diff < limitHours){
+            var remain =  limitHours - diff;
+            console.log('remain',remain);//Horas a evaluar dentro del rango nocturno
+            if(remain > 0 && remain <= lengthNightHours){
+
+                var nightHoursRemain = remain*0.5;
+                if(nightHoursRemain > 0){
+                    //horario nocturno mas las que trabajo estandar
+                    var hoursToAdd = moment.duration({hours:nightHoursRemain+diff});
+                    finTSV.add(hoursToAdd);
+                    console.log('adding remain',nightHoursRemain);
+                }else{
+                    console.log('nightHoursRemain < 0',nightHoursRemain);
+                }
+            }else{
+                var diff2 = remain - lengthNightHours;
+                var hoursToAdd = moment.duration({hours:lengthNightHours*0.5+diff2+diff});
+                finTSV.add(hoursToAdd);
+                console.log('restantes',remain);
+                console.log('lengthNightHours',lengthNightHours);
+            }
+        }else{
+            ultimoArrivo.add(ultimoArrivoToAdd);
+            finTSV.add(finTSVToAdd);
+            console.log('diff fuera de límite. Horario Normal',diff);
+        }
+        //Todas las horas menores iguales a las 6 de la mañana
+        //Rango 0 - 6
+    }else if(inicioTSV.hours() <= nightHourTo){
+        var nigthHours = nightHourTo - inicioTSV.hours();
+        if(nigthHours > 0){
+            console.log('nightHours',nigthHours);
+            var hours = limitHours - nigthHours*0.5;
+            var hoursToAdd = moment.duration({hours:hours});
+            finTSV.add(hoursToAdd);
+        }else{
+            console.log('Comienza a las 06:00. Horario Normal');
+            ultimoArrivo.add(ultimoArrivoToAdd);
+            finTSV.add(finTSVToAdd);
+        }
+    }
+
+    //else{
+    //Se lo agrego y después si tengo que quitarle le hago substract
+    //ultimoArrivo.add(ultimoArrivoToAdd);
+    //finTSV.add(finTSVToAdd);
+    //}
+
+
+    /*
+     if(inicioTSV.hours() >= nightHourFrom){
+     //Si cambio de hora y está en el rango.  Resto media hora de trabajo
+     var exceededMinutes = moment.duration(30,'minutes');
+     ultimoArrivo.subtract(exceededMinutes);
+     finTSV.subtract(exceededMinutes);
+     }
+     else if(inicioTSV.hours() < nightHourTo){
+     var diff = nightHourTo - inicioTSV.hours();
+     //Si cambio de hora y está en el rango.  Resto media hora de trabajo
+     var exceededMinutes = moment.duration(30*diff,'minutes');
+     ultimoArrivo.subtract(exceededMinutes);
+     finTSV.subtract(exceededMinutes);
+     }
+     */
+
+    return {
+        inicioTSV: inicioTSV
+        ,ultimoArrivo: ultimoArrivo
+        ,finTSV: finTSV
+    };
+}
+
+
 test2();
 
 

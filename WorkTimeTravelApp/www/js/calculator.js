@@ -2,94 +2,46 @@ window.Calculator = {
 
     calcWork:function(params,inicioTSVDate) {
         console.log('inicioTSV', inicioTSVDate);
+        var input = moment(inicioTSVDate).format("hh:mm");
 
-        //Replace values with params
-        var nightHourFrom = 23;
-        var nightHourTo = 6;
-        var limitHours = 13;
+        var inputDate = moment("2015-09-01 "+input,"YYYYMMDD hh:mm");
+        var inputDateUsed = moment("2015-09-01 "+input,"YYYYMMDD hh:mm");
 
-        var inicioTSV = moment({hour:inicioTSVDate.getHours(),min:inicioTSVDate.getMinutes()});
-        var ultimoArrivo = moment({hour:inicioTSVDate.getHours(),min:inicioTSVDate.getMinutes()});
-        var finTSV = moment({hour:inicioTSVDate.getHours(),min:inicioTSVDate.getMinutes()});
+        var restar = 0;
 
-        var ultimoArrivoToAdd = moment.duration({'hours':12,'minutes':30});
-        var finTSVToAdd = moment.duration(limitHours,'hours');
+        var length = 13;
+        if(inputDateUsed.format("mm") > 0 ){
+            length++;
+        }
 
-        var x = moment();
-        x.hour(nightHourFrom);
-        x.minutes(0);
-        x.seconds(0);
-
-        var z = moment();
-        z.hour(nightHourTo);
-        z.minutes(0);
-        z.seconds(0);
-        z.add(1,'d');
-        var range = x.twix(z);
-
-        //console.log('count',range.count('hours'));
-        //console.log('countInner',range.countInner('hours'));
-        //console.log('length',range.length('hours'));
-
-        var lengthNightHours = range.length('hours');
-
-        var rangeTSV = inicioTSV.twix(finTSV);
-
-        var overlaps = range.overlaps(rangeTSV);
-        console.log('overlaps',overlaps);
-
-        if(inicioTSV.hours() > nightHourTo){
-            var diff = nightHourFrom - inicioTSV.hours();//Estandar hours
-            console.log('diff',diff);
-            if(diff > 0 && diff < limitHours){
-                var remain =  limitHours - diff;
-                console.log('remain',remain);//Horas a evaluar dentro del rango nocturno
-                if(remain > 0){
-                    var nightHoursRemain = remain - lengthNightHours*0.5;
-                    console.log('nightHoursRemain',nightHoursRemain);
-                    if(nightHoursRemain > 0){
-                        //horario nocturno mas las que trabajo estandar
-                        var hoursToAdd = moment.duration({hours:nightHoursRemain+diff});
-                        finTSV.add(hoursToAdd);
-                        console.log('adding remain',nightHoursRemain);
-                    }
-                }
+        for(var i=0;i<length;i++){
+            if(inputDateUsed.format("H") >= 23 || inputDateUsed.format("H") < 6){
+                restar++;
             }
-        }else{
-            //Se lo agrego y después si tengo que quitarle le hago substract
-            ultimoArrivo.add(ultimoArrivoToAdd);
-            finTSV.add(finTSVToAdd);
+            inputDateUsed = moment(inputDateUsed).add(1,"hours");
         }
 
+        var finTSVDate = moment(inputDate).add(13,"hours");
+        if(restar){
+            finTSVDate = moment(finTSVDate).subtract(30*restar,"minutes");
+        }
 
-        /*
-        if(inicioTSV.hours() >= nightHourFrom){
-            //Si cambio de hora y está en el rango.  Resto media hora de trabajo
-            var exceededMinutes = moment.duration(30,'minutes');
-            ultimoArrivo.subtract(exceededMinutes);
-            finTSV.subtract(exceededMinutes);
-        }
-        else if(inicioTSV.hours() < nightHourTo){
-            var diff = nightHourTo - inicioTSV.hours();
-            //Si cambio de hora y está en el rango.  Resto media hora de trabajo
-            var exceededMinutes = moment.duration(30*diff,'minutes');
-            ultimoArrivo.subtract(exceededMinutes);
-            finTSV.subtract(exceededMinutes);
-        }
-        */
+        var ultimoArrivo = moment(finTSVDate).subtract(30,"minutes");
+
+        console.log("inicio TSV   ", inputDate.format("DD/MM/YYYY H:mm:ss"));
+        console.log("ultimo arrivo", ultimoArrivo.format("DD/MM/YYYY H:mm:ss"));
+        console.log("fin TSV      ", finTSVDate.format("DD/MM/YYYY H:mm:ss"));
 
         return {
-             inicioTSV: inicioTSV
-            ,ultimoArrivo: ultimoArrivo
-            ,finTSV: finTSV
-        };
+            inicioTSV: inicioTSVDate,
+            ultimoArrivo: ultimoArrivo,
+            finTSV: finTSVDate
+        }
+
     }
 
     ,test:function(hours){
-        var a = new Date();
-        a.setHours(hours);
-        var result = this.calcWork({},a);
-        console.log('result',result);
+        var result = this.calc({},hours);
     }
 };
 
