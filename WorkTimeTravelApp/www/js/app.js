@@ -33,7 +33,7 @@ angular.module('starter', ['ionic',"firebase","LocalForageModule",'starter.contr
         }
 
         db = $cordovaSQLite.openDB("flights");
-        $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS flights (id integer primary key, flight_id text, inicioTSV date,ultimo_arrivo date,finTSV date)");
+        $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS flights (id integer primary key AUTOINCREMENT, flight_id text, inicioTSV date,ultimo_arrivo date,finTSV date)");
       });
     })
 
