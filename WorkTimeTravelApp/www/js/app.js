@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic',"firebase","LocalForageModule",'starter.controllers', 'starter.services','starter.directives'])
+angular.module('starter', ['ionic',"ngCordova","firebase","LocalForageModule",'starter.controllers', 'starter.services','starter.directives'])
 
     .config(['$localForageProvider', function($localForageProvider){
       $localForageProvider.config({
@@ -17,7 +17,7 @@ angular.module('starter', ['ionic',"firebase","LocalForageModule",'starter.contr
       });
     }])
 
-    .run(function($ionicPlatform) {
+    .run(function($ionicPlatform,$cordovaSQLite) {
       $ionicPlatform.ready(function() {
           
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -29,6 +29,9 @@ angular.module('starter', ['ionic',"firebase","LocalForageModule",'starter.contr
           // org.apache.cordova.statusbar required
           StatusBar.styleLightContent();
         }
+
+          var db = $cordovaSQLite.openDB("flights");
+          $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS flights (id integer primary key, flight_id text, inicioTSV date,ultimo_arrivo date,finTSV date)");
       });
     })
 
