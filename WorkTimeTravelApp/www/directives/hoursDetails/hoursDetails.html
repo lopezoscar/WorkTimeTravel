@@ -1,4 +1,30 @@
 <div>
+    <form name="hoursForm" novalidate="" ng-submit="calc(hoursForm)">
+
+        <div class="row">
+            <div class="col">
+                <div class="list list-inset">
+                    <label class="item item-input">
+                        <!--<span class="input-label">Vuelo</span>-->
+                        <i class="icon ion-paper-airplane placeholder-icon"></i>
+                        <input type="text" name="vuelo" placeholder="Vuelo" ng-model="vuelo" capitalize required />
+                    </label>
+                    <label class="item item-input" >
+                        <i class="icon ion-clock placeholder-icon"></i>
+                        <!--<span class="input-label">Inicio TSV</span>-->
+                        <input ng-blur="calc(hoursForm)" type="time" name="inicioTSV" ng-model="inicioTSV"  required />
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="row">-->
+        <!--<div class="col-25 col-offset-10">-->
+        <!--<input type="submit" class="button button-large button-positive" value="Calcular Horarios"/>-->
+        <!--</div>-->
+        <!--</div>-->
+    </form>
+
     <div class="row">
 
         <div class="card">
@@ -30,7 +56,7 @@
 
     <div class="row">
         <div class="col">
-            <input type="button" ng-click="createAlarm()" class="button button-large button-positive" value="Crear Alarma"/>
+            <a ng-click="createAlarm()" class="button button-large button-positive">Crear Alarma</a>
         </div>
     </div>
 </div>

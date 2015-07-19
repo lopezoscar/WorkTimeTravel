@@ -1,6 +1,6 @@
 var directives = angular.module('starter.directives');
 
-directives.directive('hoursDetails',['$localForage','HoursService',function($localForage,HoursService){
+directives.directive('hoursDetails',['HoursService',function(HoursService){
 
     return {
         restrict: 'E'
@@ -9,21 +9,26 @@ directives.directive('hoursDetails',['$localForage','HoursService',function($loc
         , scope: {
             hoursData: '='
         },
-        controller: ['$scope', function ($scope) {
-            console.log($scope.hoursData);
+        controller: ['$scope','$state', function ($scope,$state) {
+            $scope.calc = function(){
+                if(typeof this.inicioTSV == "undefined"){
+                    return;
+                }
+                var results = HoursService.calc(this.inicioTSV);
+                $scope.hoursData = {
+                    vuelo:this.vuelo
+                    ,inicioTSV: results.inicioTSV
+                    ,ultimoArrivo: results.ultimoArrivo
+                    ,finTSV: results.finTSV
+                };
+            };
 
             $scope.createAlarm = function () {
-                var data = {
-                    inicioTSV: $scope.hoursData.inicioTSV
-                    , ultimoArrivo: $scope.hoursData.ultimoArrivo
-                    , finTSV: $scope.hoursData.finTSV
-                };
                 if ($scope.hoursData.vuelo) {
-                    //$localForage.setItem($scope.hoursData.vuelo, data);
                     HoursService.addHours($scope.hoursData);
-                    //$localForage.setItem($scope.hoursData.vuelo, data);
+                    $state.go('list');
                 }
-            }
+            };
         }]
     }
 }]);
