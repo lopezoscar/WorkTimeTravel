@@ -21,6 +21,11 @@ directives.directive('hoursDetails',['HoursService',function(HoursService){
                     ,ultimoArrivo: results.ultimoArrivo
                     ,finTSV: results.finTSV
                 };
+                $scope.feedback();
+            };
+
+            $scope.feedback = function(){
+                console.log($(".card a"));
             };
 
             $scope.createAlarm = function () {
