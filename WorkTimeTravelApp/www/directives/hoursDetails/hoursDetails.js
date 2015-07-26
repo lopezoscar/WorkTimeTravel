@@ -9,7 +9,7 @@ directives.directive('hoursDetails',['HoursService',function(HoursService){
         , scope: {
             hoursData: '='
         },
-        controller: ['$scope','$state', function ($scope,$state) {
+        controller: ['$scope','$state',"$timeout", function ($scope,$state,$timeout) {
             $scope.calc = function(){
                 if(typeof this.inicioTSV == "undefined"){
                     return;
@@ -24,9 +24,15 @@ directives.directive('hoursDetails',['HoursService',function(HoursService){
                 $scope.feedback();
             };
 
+            $scope.onFeedback = false;
+            $scope.bkgColor = '#387ef5';
             $scope.feedback = function(){
-                console.log($(".card a"));
+                $scope.onFeedback = true;
+                $timeout(function(){
+                    $scope.onFeedback = false;
+                },1000);
             };
+
 
             $scope.createAlarm = function () {
                 if ($scope.hoursData.vuelo) {
