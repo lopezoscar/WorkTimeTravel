@@ -5,7 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
+// From 2.8.1 onward
 
+moment.locale('en');
 window.db = null;
 angular.module('starter', ['ionic',"firebase","LocalForageModule",'starter.controllers', 'starter.services','starter.directives'])
 

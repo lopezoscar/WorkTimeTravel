@@ -5,8 +5,17 @@ angular.module('starter.services', [])
         return moment(dateString).format(format);
       };
     })
-
-    .factory('HoursService',['$localForage',function($localForage){
+    .filter('toNow',function(){
+      return function(time){
+        return moment(time).toNow(); // in 4 years
+      }
+    })
+    .filter('fromNow',function(){
+      return function(time){
+        return moment(time).fromNow(); // in 4 years
+      }
+    })
+    .factory('HoursService',['$localForage','$filter',function($localForage,$filter){
 
       return {
         calc: function(inicioTSV){
@@ -56,6 +65,7 @@ angular.module('starter.services', [])
             inicioTSV: hoursData.inicioTSV
             , ultimoArrivo: hoursData.ultimoArrivo
             , finTSV: hoursData.finTSV
+            ,ts: moment()
           };
           if (hoursData.vuelo) {
             $localForage.setItem(hoursData.vuelo, data);

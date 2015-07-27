@@ -3,7 +3,7 @@
         <ion-content>
             <ion-list>
                 <ion-item class="item-remove-animate item-avatar item-icon-right"
-                          collection-repeat="hour in hours" type="item-text-wrap">
+                          collection-repeat="hour in hours | orderBy: 'ts':true" type="item-text-wrap">
                     <div class="row">
                         <div class="col">
                             <button class="button button-clear button-positive">{{hour.vuelo}}</button>
@@ -13,6 +13,8 @@
                             <p>Inicio TSV {{hour.inicioTSV    |  moment:'DD/MM HH:mm'}}</p>
                             <p>Ultimo Arrivo {{hour.ultimoArrivo |  moment:'DD/MM HH:mm'}}</p>
                             <p>Fin TSV {{hour.finTSV       |  moment:'DD/MM HH:mm'}}</p>
+                            <p>{{hour.ts | fromNow}}</p>
+
                             <i class="icon ion-chevron-right icon-accessory"></i>
                         </div>
                         <ion-option-button class="button-assertive" ng-click="removeHour(hour)">

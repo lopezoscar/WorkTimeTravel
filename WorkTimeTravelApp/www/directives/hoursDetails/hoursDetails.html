@@ -1,87 +1,54 @@
 <div>
-    <form name="hoursForm" novalidate="" ng-submit="calc(hoursForm)">
-
-        <div class="row">
-            <div class="col">
-                <div class="list list-inset">
-                    <label class="item item-input">
-                        <!--<span class="input-label">Vuelo</span>-->
-                        <i class="icon ion-paper-airplane placeholder-icon"></i>
-                        <input type="text" name="vuelo" placeholder="Vuelo" ng-model="vuelo" capitalize required />
-                    </label>
-                    <label class="item item-input" >
-                        <i class="icon ion-clock placeholder-icon"></i>
-                        <!--<span class="input-label">Inicio TSV</span>-->
-                        <input ng-change="calc(hoursForm)" type="time" name="inicioTSV" ng-model="inicioTSV"  required />
-                    </label>
-                </div>
-            </div>
-        </div>
-
-        <!--<div class="row">-->
-        <!--<div class="col-25 col-offset-10">-->
-        <!--<input type="submit" class="button button-large button-positive" value="Calcular Horarios"/>-->
-        <!--</div>-->
-        <!--</div>-->
-    </form>
-
-    <!--<div class="row">-->
-        <div class="list card">
-            <a href="#" class="item">
-                <i class="icon ion-home"></i>Inicio TSV
-            </a>
-            <a href="#" class="item" ng-class="{'active':onFeedback,'background-color':'#387ef5'}">
-                {{hoursData.inicioTSV | moment:'DD/MM HH:mm'}}
-            </a>
-            <a href="#" class="item">
-                <i class="icon ion-home"></i>Ult. arrivo
-            </a>
-            <a href="#" class="item" ng-class="{'active':onFeedback, 'background-color':'#387ef5'}">
-                {{hoursData.ultimoArrivo | moment:'DD/MM HH:mm'}}
-            </a>
-            <a href="#" class="item">
-                <i class="icon ion-home"></i>Fin TSV
-            </a>
-            <a href="#" class="item" ng-class="{'active':onFeedback, 'background-color':'#387ef5'}">
-                {{hoursData.finTSV | moment:'DD/MM HH:mm'}}
-            </a>
-        </div>
-        <!--<div class="list card">-->
-            <!-- -->
-        <!--</div>-->
-        <!--<div class="list card">-->
-            <!-- -->
-        <!--</div>-->
-
-        <!--<div class="card">-->
-            <!--<div class="item item-divider">-->
-                <!--Inicio TSV-->
-            <!--</div>-->
-            <!--<div class="item item-text-wrap">-->
-                <!-- -->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="card">-->
-            <!--<div class="item item-divider">-->
-                <!--Último Arrivo-->
-            <!--</div>-->
-            <!--<div class="item item-text-wrap">-->
-                <!-- -->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="card">-->
-            <!--<div class="item item-divider">-->
-                <!--Fin TSV-->
-            <!--</div>-->
-            <!--<div class="item item-text-wrap">-->
-                <!-- -->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-
     <div class="row">
         <div class="col">
-            <a ng-click="createAlarm()" class="button button-large button-positive">Crear Alarma</a>
+            <form name="hoursForm" novalidate="" ng-submit="calc(hoursForm)">
+                <div class="row">
+                    <div class="col">
+                        <div class="list list-inset">
+                            <label class="item item-input">
+                                <!--<span class="input-label">Vuelo</span>-->
+                                <i class="icon ion-paper-airplane placeholder-icon"></i>
+                                <input type="text" name="vuelo" placeholder="Vuelo" ng-model="vuelo" capitalize required />
+                            </label>
+                            <label class="item item-input" >
+                                <i class="icon ion-clock placeholder-icon"></i>
+                                <!--<span class="input-label">Inicio TSV</span>-->
+                                <input ng-change="calc(hoursForm)" type="time" name="inicioTSV" ng-model="inicioTSV"  required />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row row-center">
+        <div class="col">
+            <ion-spinner ng-show="onFeedback" icon="spiral" class="spinner-positive"></ion-spinner>
+            <div class="list card">
+                <a href="#" class="item">
+                    <i class="icon ion-home"></i>Inicio TSV
+                </a>
+                <a href="#" class="item" ng-class="{'active':onFeedback,'background-color':'#387ef5'}">
+                    {{hoursData.inicioTSV | moment:'DD/MM HH:mm'}}
+                </a>
+                <a href="#" class="item">
+                    <i class="icon ion-home"></i>Ult. arrivo
+                </a>
+                <a href="#" class="item" ng-class="{'active':onFeedback, 'background-color':'#387ef5'}">
+                    {{hoursData.ultimoArrivo | moment:'DD/MM HH:mm'}}
+                </a>
+                <a href="#" class="item">
+                    <i class="icon ion-home"></i>Fin TSV
+                </a>
+                <a href="#" class="item" ng-class="{'active':onFeedback, 'background-color':'#387ef5'}">
+                    {{hoursData.finTSV | moment:'DD/MM HH:mm'}}
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row row-bottom">
+        <div class="col">
+            <a ng-click="createAlarm()" class="button button-large button-positive center">Crear Alarma</a>
         </div>
     </div>
 </div>

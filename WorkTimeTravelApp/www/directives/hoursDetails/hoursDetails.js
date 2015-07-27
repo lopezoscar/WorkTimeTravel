@@ -27,10 +27,11 @@ directives.directive('hoursDetails',['HoursService',function(HoursService){
             $scope.onFeedback = false;
             $scope.bkgColor = '#387ef5';
             $scope.feedback = function(){
-                $scope.onFeedback = true;
                 $timeout(function(){
                     $scope.onFeedback = false;
-                },1000);
+                },500);
+                $scope.onFeedback = true;
+
             };
 
 
