@@ -9,7 +9,7 @@ directives.directive('hoursDetails',['HoursService',function(HoursService){
         , scope: {
             hoursData: '='
         },
-        controller: ['$scope','$state',"$timeout", function ($scope,$state,$timeout) {
+        controller: ['$scope','$state',"$timeout","$ionicModal", function ($scope,$state,$timeout,$ionicModal) {
             $scope.calc = function(){
                 if(typeof this.inicioTSV == "undefined"){
                     return;
@@ -29,10 +29,37 @@ directives.directive('hoursDetails',['HoursService',function(HoursService){
             $scope.feedback = function(){
                 $timeout(function(){
                     $scope.onFeedback = false;
-                },500);
+                    $scope.closeModal();
+                },1000);
+                $scope.openModal();
                 $scope.onFeedback = true;
-
             };
+
+            $ionicModal.fromTemplateUrl('ok-modal.html', {
+                scope: $scope,
+                animation: 'scale-in-up'
+            }).then(function(modal) {
+                $scope.modal = modal;
+            });
+
+            $scope.openModal = function() {
+                $scope.modal.show();
+            };
+            $scope.closeModal = function() {
+                //$scope.modal.hide();
+            };
+            //Cleanup the modal when we're done with it!
+            $scope.$on('$destroy', function() {
+                $scope.modal.remove();
+            });
+            // Execute action on hide modal
+            $scope.$on('modal.hidden', function() {
+                // Execute action
+            });
+            // Execute action on remove modal
+            $scope.$on('modal.removed', function() {
+                // Execute action
+            });
 
 
             $scope.createAlarm = function () {
