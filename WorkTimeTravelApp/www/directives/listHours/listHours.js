@@ -4,7 +4,7 @@ var directives = angular.module('starter.directives');
 directives.directive('listHours',['HoursService',function(HoursService){
 
     return {
-        restrict:'E'
+         restrict:'E'
         ,replace: true
         ,templateUrl:'directives/listHours/listHours.html'
         ,scope:{

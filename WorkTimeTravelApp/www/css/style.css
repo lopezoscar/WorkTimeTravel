@@ -17,3 +17,12 @@
     width:100%;
     text-align:center;
 }
+
+.vcenter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+

@@ -1,11 +1,12 @@
 window.Calculator = {
 
     calcWork:function(params,inicioTSVDate) {
-        console.log('inicioTSV', inicioTSVDate);
-        var input = moment(inicioTSVDate).format("hh:mm");
+        //console.log('inicioTSV', inicioTSVDate);
+        var input = moment(inicioTSVDate,"YYYY-MM-DDThh:mm").format("HH:mm");
+        //console.log(input);
 
-        var inputDate = moment("2015-09-01 "+input,"YYYYMMDD hh:mm");
-        var inputDateUsed = moment("2015-09-01 "+input,"YYYYMMDD hh:mm");
+        var inputDate = moment("20160208 "+input,"YYYYMMDD HH:mm");
+        var inputDateUsed = moment("20160208 "+input,"YYYYMMDD HH:mm");
 
         var restar = 0;
 
@@ -15,7 +16,7 @@ window.Calculator = {
         }
 
         for(var i=0;i<length;i++){
-            if(inputDateUsed.format("H") >= 23 || inputDateUsed.format("H") < 6){
+            if(Number(inputDateUsed.format("HH")) >= 23 || Number(inputDateUsed.format("HH")) < 6){
                 restar++;
             }
             inputDateUsed = moment(inputDateUsed).add(1,"hours");

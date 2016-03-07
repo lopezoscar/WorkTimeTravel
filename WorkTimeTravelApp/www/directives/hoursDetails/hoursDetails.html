@@ -13,7 +13,7 @@
                             <label class="item item-input" >
                                 <i class="icon ion-clock placeholder-icon"></i>
                                 <!--<span class="input-label">Inicio TSV</span>-->
-                                <input ng-change="calc(hoursForm)" type="time" name="inicioTSV" ng-model="inicioTSV"  required />
+                                <input ng-blur="calc(hoursForm)" type="time" name="inicioTSV" ng-model="inicioTSV"  required />
                             </label>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
     </div>
     <div class="row row-bottom">
         <div class="col">
-            <a ng-click="createAlarm()" class="button button-large button-positive center">Crear Alarma</a>
+            <a ng-click="createAlarm()" class="button button-large button-positive vcenter">Crear Alarma</a>
         </div>
     </div>
 
@@ -59,10 +59,10 @@
                 <h1 class="title">Calculo Horas</h1>
             </ion-header-bar>
             <div class="center">
-                        <i class="ion-android-checkmark-circle positive" style="font-size:71px;"></i>
-                        <p>Calculo OK</p>
+                <i class="ion-android-checkmark-circle positive" style="font-size:71px;"></i>
+                <p>Calculo OK</p>
             </div>
         </ion-modal-view>
     </script>
-
 </div>
+

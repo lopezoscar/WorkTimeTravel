@@ -27,11 +27,13 @@ directives.directive('hoursDetails',['HoursService',function(HoursService){
             $scope.onFeedback = false;
             $scope.bkgColor = '#387ef5';
             $scope.feedback = function(){
-                $timeout(function(){
+
+                /*$timeout(function(){
                     $scope.onFeedback = false;
                     $scope.closeModal();
                 },1000);
-                $scope.openModal();
+                */
+                //$scope.openModal();
                 $scope.onFeedback = true;
             };
 
@@ -60,7 +62,6 @@ directives.directive('hoursDetails',['HoursService',function(HoursService){
             $scope.$on('modal.removed', function() {
                 // Execute action
             });
-
 
             $scope.createAlarm = function () {
                 if ($scope.hoursData.vuelo) {
