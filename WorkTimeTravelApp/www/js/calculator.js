@@ -5,8 +5,10 @@ window.Calculator = {
         var input = moment(inicioTSVDate,"YYYY-MM-DDThh:mm").format("HH:mm");
         //console.log(input);
 
-        var inputDate = moment("20160208 "+input,"YYYYMMDD HH:mm");
-        var inputDateUsed = moment("20160208 "+input,"YYYYMMDD HH:mm");
+        var curDate = moment().format("YYYYMMDD");
+        console.log(curDate);
+        var inputDate = moment(curDate+" "+input,"YYYYMMDD HH:mm");
+        var inputDateUsed = moment(curDate+" "+input,"YYYYMMDD HH:mm");
 
         var restar = 0;
 
@@ -34,7 +36,7 @@ window.Calculator = {
         console.log("fin TSV      ", finTSVDate.format("DD/MM/YYYY H:mm:ss"));
 
         return {
-            inicioTSV: inicioTSVDate,
+            inicioTSV: inputDate,
             ultimoArrivo: ultimoArrivo,
             finTSV: finTSVDate
         }
