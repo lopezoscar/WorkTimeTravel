@@ -1,6 +1,5 @@
 var directives = angular.module('starter.directives');
 
-
 directives.directive('listHours',['HoursService',function(HoursService){
 
     return {

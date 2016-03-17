@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
     .controller('ListCtrl',function($scope,HoursService){
-        this.hours = [];
+        //this.hours = [];
         $scope.$on('$ionicView.enter', function(e) {
             HoursService.getHours(function(hours){
                 $scope.hours = hours;

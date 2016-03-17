@@ -21,6 +21,7 @@ directives.directive('hoursDetails',['HoursService',function(HoursService){
                     ,ultimoArrivo: results.ultimoArrivo
                     ,finTSV: results.finTSV
                 };
+                console.log("HOURS DATA ",$scope.hoursData);
                 $scope.feedback();
             };
 
@@ -64,6 +65,7 @@ directives.directive('hoursDetails',['HoursService',function(HoursService){
             });
 
             $scope.createAlarm = function () {
+                console.log($scope.hoursData);
                 if ($scope.hoursData.vuelo) {
                     HoursService.addHours($scope.hoursData);
                     $state.go('list');

@@ -10,9 +10,9 @@
                         </div>
 
                         <div class="">
-                            <p>Inicio TSV {{hour.inicioTSV    |  moment:'DD/MM HH:mm'}}</p>
-                            <p>Ultimo Arrivo {{hour.ultimoArrivo |  moment:'DD/MM HH:mm'}}</p>
-                            <p>Fin TSV {{hour.finTSV       |  moment:'DD/MM HH:mm'}}</p>
+                            <p>Inicio TSV {{hour.hours.inicioTSV}}</p>
+                            <p>Ultimo Arrivo {{hour.hours.ultimoArrivo}}</p>
+                            <p>Fin TSV {{hour.hours.finTSV}}</p>
                             <p>{{hour.ts | fromNow}}</p>
 
                             <i class="icon ion-chevron-right icon-accessory"></i>
