@@ -47,6 +47,17 @@ angular.module('starter.services', [])
           };
           if (hoursData.vuelo) {
             $localForage.setItem(hoursData.vuelo, data);
+
+            //$cordovaLocalNotification.schedule({
+            //  id: 1,
+            //  title: "Flights",
+            //  text: "flight",
+            //  firstAt: "monday_9_am",
+            //  every: "never",
+            //  sound: "file://sounds/reminder.mp3",
+            //  icon: "http://icons.com/?cal_id=1",
+            //  data: data
+            //});
           }
     }
 }

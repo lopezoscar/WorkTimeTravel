@@ -10,9 +10,9 @@
                         </div>
 
                         <div class="">
-                            <p>Inicio TSV {{hour.hours.inicioTSV}}</p>
-                            <p>Ultimo Arrivo {{hour.hours.ultimoArrivo}}</p>
-                            <p>Fin TSV {{hour.hours.finTSV}}</p>
+                            <p>Inicio TSV {{hour.hours.inicioTSV | date:"dd/MM/yyyy HH:mm"}}</p>
+                            <p>Ultimo Arrivo {{hour.hours.ultimoArrivo | date:"dd/MM/yyyy HH:mm"}}</p>
+                            <p>Fin TSV {{hour.hours.finTSV | date:"dd/MM/yyyy HH:mm"}}</p>
                             <p>{{hour.ts | fromNow}}</p>
 
                             <i class="icon ion-chevron-right icon-accessory"></i>
@@ -23,11 +23,14 @@
                     </div>
                 </ion-item>
             </ion-list>
-            <div class="row">
-                <div class="col text-right">
-                    <a ui-sref="add" class="button button-clear button-positive  button-large icon ion-plus-circled"></a>
-                </div>
-            </div>
+
         </ion-content>
+        <div class="row">
+            <div class="col text-right">
+                <a ui-sref="add" class="button button-clear button-positive button-large  position-abs-btn">
+                    <i class="icon_custom ion-plus-circled"></i>
+                </a>
+            </div>
+        </div>
     </div>
 </div>

@@ -24,5 +24,15 @@
     justify-content: center;
 }
 
+.icon_custom {
+    font-size:70px;
+    /*padding:10px;*/
+}
 
-
+.position-abs-btn {
+    position: absolute;
+    bottom:0;
+    right:0;
+    margin:30px;
+    z-index: 9999999;
+}

@@ -36,10 +36,15 @@ window.Calculator = {
         console.log("ultimo arrivo", ultimoArrivo.format("DD/MM/YYYY H:mm:ss"));
         console.log("fin TSV      ", finTSVDate.format("DD/MM/YYYY H:mm:ss"));
 
+        //return {
+        //    inicioTSV: inputDate.format("DD/MM/YYYY HH:mm:ss"),
+        //    ultimoArrivo: ultimoArrivo.format("DD/MM/YYYY HH:mm:ss"),
+        //    finTSV: finTSVDate.format("DD/MM/YYYY HH:mm:ss")
+        //}
         return {
-            inicioTSV: inputDate.format("DD/MM/YYYY HH:mm:ss"),
-            ultimoArrivo: ultimoArrivo.format("DD/MM/YYYY HH:mm:ss"),
-            finTSV: finTSVDate.format("DD/MM/YYYY HH:mm:ss")
+            inicioTSV: inputDate,
+            ultimoArrivo: ultimoArrivo,
+            finTSV: finTSVDate
         }
 
     }

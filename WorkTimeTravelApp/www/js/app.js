@@ -21,6 +21,7 @@ angular.module('starter', ['ionic',"firebase","LocalForageModule",'starter.contr
         });
     }])
 
+
     .run(function($ionicPlatform) {
         $ionicPlatform.ready(function() {
 
