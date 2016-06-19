@@ -15,7 +15,7 @@ angular.module('starter.services', [])
         return moment(time).fromNow(); // in 4 years
       }
     })
-    .factory('HoursService',['$localForage','$filter',function($localForage,$filter){
+    .factory('HoursService',['$localForage','$filter','$cordovaLocalNotification',function($localForage,$filter,$cordovaLocalNotification){
 
       return {
         calc: function(inicioTSV){
@@ -48,16 +48,26 @@ angular.module('starter.services', [])
           if (hoursData.vuelo) {
             $localForage.setItem(hoursData.vuelo, data);
 
-            //$cordovaLocalNotification.schedule({
-            //  id: 1,
-            //  title: "Flights",
-            //  text: "flight",
-            //  firstAt: "monday_9_am",
-            //  every: "never",
-            //  sound: "file://sounds/reminder.mp3",
-            //  icon: "http://icons.com/?cal_id=1",
-            //  data: data
-            //});
+
+            try{
+                var now = new Date().getTime();
+
+                var duration = moment.duration(data.finTSV.diff(data.inicioTSV));
+                var seconds = duration.asSeconds();
+                var delayedTime = new Date(now + seconds * 1000);
+
+                var _10SecondsFromNow = new Date(now + 10 * 1000);
+
+                $cordovaLocalNotification.schedule({
+                  id: 19,
+                  title: "Flights",
+                  text: "flight-"+hoursData.vuelo,
+                  at: _10SecondsFromNow,
+                  data: data
+                });
+            }catch(err){
+              console.log("No se puede agregar la alarma");
+            }
           }
     }
 }

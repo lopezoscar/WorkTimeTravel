@@ -9,7 +9,7 @@
 
 moment.locale('en');
 window.db = null;
-angular.module('starter', ['ionic',"firebase","LocalForageModule",'starter.controllers', 'starter.services','starter.directives'])
+angular.module('starter', ['ionic','ngCordova',"firebase","LocalForageModule",'starter.controllers', 'starter.services','starter.directives'])
 
     .config(['$localForageProvider', function($localForageProvider){
         $localForageProvider.config({

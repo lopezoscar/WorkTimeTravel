@@ -29,10 +29,22 @@
     /*padding:10px;*/
 }
 
+.icon_delete {
+    font-size: 30px;
+}
+
 .position-abs-btn {
     position: absolute;
     bottom:0;
     right:0;
     margin:30px;
     z-index: 9999999;
+}
+
+.flightStyle{
+    width:100%;
+}
+
+.padding-bottom-custom {
+    padding-bottom:5px;
 }
