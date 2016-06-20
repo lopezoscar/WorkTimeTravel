@@ -40,7 +40,11 @@ angular.module('starter.services', [])
                 $localForage.removeItem(anHour.vuelo);
                 $localForage.getItem("flights_count").then(function(length){
                     length === null ?  length = 0 : length--;
-                    $localForage.setItem("flights_count", length);//Promise
+                    $localForage.setItem("flights_count", length).then(function(){
+                        $cordovaLocalNotification.cancel(anHour.id,function(a,b){
+                            console.log(a,b);
+                        });//callback
+                    });
                 });
             }
 
@@ -52,8 +56,12 @@ angular.module('starter.services', [])
                     , ts: moment()
                 };
                 if (hoursData.vuelo) {
-                    $localForage.setItem(hoursData.vuelo, data);
+
                     $localForage.getItem("flights_count").then(function(length){
+                        data.id = length;
+
+                        $localForage.setItem(hoursData.vuelo, data);
+
                         length === null ?  length = 1 : length++;
                         $localForage.setItem("flights_count", length).then(function(){
                             try {
@@ -70,7 +78,10 @@ angular.module('starter.services', [])
                                     title: "Flights",
                                     text: "flight-" + hoursData.vuelo,
                                     at: _10SecondsFromNow,
-                                    data: data
+                                    data: data,
+                                    sound:  "file://sounds/reminder.mp3",
+                                    led: "FF0000"
+
                                 });
                                 console.log("LENGTH ", length);
                             } catch (err) {
